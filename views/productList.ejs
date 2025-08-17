@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MYORA - Product List</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 50px;
+      background-color: #1a1a2e;
+      color: white;
+    }
+
+    .navbar .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #00ff99;
+    }
+
+    .navbar input[type="text"] {
+      width: 400px;
+      padding: 10px;
+      border-radius: 20px;
+      border: none;
+    }
+
+    .navbar .nav-links {
+      display: flex;
+      gap: 20px;
+      font-size: 16px;
+    }
+
+    .navbar .nav-links a {
+      color: white;
+      text-decoration: none;
+    }
+
+    /* Divider bar */
+    .divider {
+      height: 4px;
+      background: teal;
+    }
+
+    /* Category Bar */
+    .category-bar { 
+      display: flex; 
+      justify-content: space-around; 
+      align-items: center; 
+      background: #fff; 
+      padding: 10px 8px; 
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1); 
+      overflow-x: auto; 
+    }
+    .category { 
+      text-align: center; 
+      margin: 0 10px; 
+      font-size: 13px; 
+      color: #333; 
+      flex-shrink: 0; 
+      cursor: pointer; 
+      transition: all 0.3s ease; 
+    }
+    .category img { 
+      width: 50px; 
+      height: 50px; 
+      border-radius: 50%; 
+      object-fit: cover; 
+      display: block; 
+      margin: 0 auto 5px; 
+      border: 2px solid #ddd; 
+      transition: transform 0.3s ease, border-color 0.3s ease; 
+    }
+    .category:hover img { 
+      transform: scale(1.2); 
+      border-color: #00bfa6; 
+    }
+    .category:hover { 
+      color: #00bfa6; 
+      font-weight: bold; 
+      transform: scale(1.05); 
+    }
+
+    /* Category Sections */
+    .category-section {
+      margin: 40px 50px;
+      background: #f5f6ef;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .category-section h2 {
+      margin-bottom: 25px;
+      border-left: 6px solid teal;
+      padding-left: 12px;
+      font-size: 24px;
+      color: #1a1a2e;
+    }
+
+    /* Product Grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 25px;
+    }
+
+    .product-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .product-card img {
+      max-width: 150px;
+      margin-bottom: 15px;
+      transition: transform 0.4s ease;
+    }
+
+    .product-card:hover img {
+      transform: scale(1.1);
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+    }
+
+    .price {
+      color: green;
+      font-size: 18px;
+      font-weight: bold;
+      margin: 8px 0 4px 0;
+    }
+
+    .discount {
+      color: red;
+      font-size: 14px;
+      margin: 0;
+    }
+
+    /* Footer */
+    footer {
+      background: #1a1f36;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+      font-size: 13px;
+    }
+    footer a {
+      color: #00bfa6;
+      text-decoration: none;
+      margin: 0 8px;
+      transition: color 0.3s ease;
+    }
+    footer a:hover {
+      color: #ff6b6b;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo">MYORA</div>
+    <input type="text" placeholder="Search for products, brands and more...">
+    <div class="nav-links">
+      <a href="#">Cart 🛒</a>
+      <a href="#">Login 🔑</a>
+      <a href="#">Profile 👤</a>
+    </div>
+  </div>
+
+  <!-- Divider -->
+  <div class="divider"></div>
+
+  <!-- Category Bar -->
+  <div class="category-bar">
+    <div class="category"><img src="https://images.unsplash.com/photo-1627639679638-8485316a4b21?fm=jpg&q=60" alt="Kids">Kids</div>
+    <div class="category"><img src="https://images.unsplash.com/photo-1618886614638-80e3c103d31a?fm=jpg&q=60" alt="Men">Men</div>
+    <div class="category"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvMgHc4pUoNFSFIPWCWlmVHOErECrJ0bYb2g&s" alt="Women">Women</div>
+    <div class="category"><img src="https://images.pexels.com/photos/322207/pexels-photo-322207.jpeg?auto=compress" alt="Accessories">Accessories</div>
+    <div class="category"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLnREXrn4jct_dIw5Zqk2_1LqUTNAeUdldsA&s" alt="Home">Home</div>
+    <div class="category"><img src="https://previews.123rf.com/images/olegdudko/olegdudko1510/olegdudko151007353/46794713-toys.jpg" alt="Toys">Toys</div>
+  </div>
+
+  <!-- Dynamic Categories and Products -->
+  <% categories.forEach(category => { %>
+    <div class="category-section">
+      <h2><%= category.name %></h2>
+      <div class="products-grid">
+        <% category.products.forEach(product => { %>
+          <a href="/product/<%= product.id %>" class="product-card">
+  <img src="<%= product.image %>" alt="<%= product.name %>">
+  <h3><%= product.name %></h3>
+  <p class="price">₹<%= product.price %></p>
+  <p class="discount"><%= product.discount %>% off</p>
+</a>
+
+        <% }) %>
+      </div>
+    </div>
+  <% }) %>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 MYORA. All Rights Reserved.</p>
+    <div class="social-icons">
+      <a href="#">🌐 Facebook</a>
+      <a href="#">📸 Instagram</a>
+      <a href="#">🐦 Twitter</a>
+      <a href="#">▶️ YouTube</a>
+    </div>
+    <p><a href="#">About Us</a> | <a href="#">Contact</a> | <a href="#">Privacy Policy</a></p>
+  </footer>
+</body>
+</html>
