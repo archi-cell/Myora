@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Myora | About Us</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --navy: #1a1f36;
+      --teal: #00bfa6;
+      --coral: #ff6b6b;
+      --ivory: #f0f0f0;
+      --grey: #e0e0e0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: var(--ivory);
+      color: var(--navy);
+    }
+
+    /* Navbar */
+    .navbar {
+      background: var(--navy);
+      padding: 1rem 2rem;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--ivory);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--teal);
+    }
+
+    /* Auth Buttons */
+    .auth-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-left: 2rem;
+    }
+
+    .btn-login, .btn-register {
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: 0.3s ease;
+    }
+
+    .btn-login {
+      background:var(--teal);
+      color: #fff;
+      border: 2px solid var(--teal);
+    }
+
+    .btn-login:hover {
+      background: #008f7a;
+    }
+
+    .btn-register {
+      background: var(--teal);
+      color: #fff;
+      border: 2px solid var(--teal);
+    }
+
+    .btn-register:hover {
+      background: #008f7a;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1200px;
+      margin: 80px auto 0;
+      padding: 2rem;
+    }
+
+    /* About Section */
+    .about-section {
+      position: relative;
+      display: flex;
+      gap: 4rem;
+      align-items: center;
+      min-height: 80vh;
+      perspective: 1000px;
+      overflow: hidden;
+    }
+
+    .about-content {
+      flex: 1;
+      animation: slideIn 1s ease-out;
+    }
+
+    .about-content h1 {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      color: var(--navy);
+    }
+
+    /* Bubble Styles */
+    .bubble-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 1rem;
+      position: relative;
+    }
+
+    .bubble {
+      background: white;
+      padding: 1.2rem 1.5rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      position: relative;
+      animation: popIn 1s ease forwards;
+      opacity: 0;
+      transform: scale(0.9);
+    }
+
+    .bubble:nth-child(1) { animation-delay: 0.3s; }
+    .bubble:nth-child(2) { animation-delay: 0.6s; }
+    .bubble:nth-child(3) { animation-delay: 0.9s; }
+    .bubble:nth-child(4) { animation-delay: 1.2s; }
+
+    .bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 30px;
+      border-width: 10px;
+      border-style: solid;
+      border-color: white transparent transparent transparent;
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.8) translateY(20px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .bubble:hover {
+      transform: scale(1.05) rotate(1deg);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+      transition: 0.3s ease;
+    }
+
+    /* Floating Circles */
+    .decor-circles {
+      position: absolute;
+      top: 10%;
+      right: 10%;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      z-index: -1;
+    }
+
+    .circle {
+      width: 80px;
+      height: 80px;
+      background: var(--teal);
+      border-radius: 50%;
+      opacity: 0.2;
+      animation: float 6s infinite ease-in-out alternate;
+    }
+
+    .circle:nth-child(2) {
+      width: 60px;
+      height: 60px;
+      background: var(--coral);
+      animation-delay: 2s;
+    }
+
+    .circle:nth-child(3) {
+      width: 100px;
+      height: 100px;
+      background: var(--navy);
+      opacity: 0.15;
+      animation-delay: 4s;
+    }
+
+    @keyframes float {
+      from { transform: translateY(0) rotate(0deg); }
+      to { transform: translateY(-50px) rotate(360deg); }
+    }
+
+    /* About Boxes */
+    .about-boxes {
+      padding: 4rem 2rem;
+      background: linear-gradient(135deg, var(--ivory), #ffffff);
+    }
+
+    .box-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .info-box {
+      background: var(--ivory);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      transform-style: preserve-3d;
+    }
+
+    .info-box:hover {
+      transform: rotateY(10deg) rotateX(5deg) scale(1.05);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    }
+
+    .info-box h3 {
+      margin-bottom: 1rem;
+      color: var(--teal);
+      font-size: 1.5rem;
+    }
+
+    /* Policy Section */
+    .policy-section {
+      padding: 4rem 0;
+      background: white;
+      margin: 2rem 0;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .policy-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
+      padding: 2rem;
+    }
+
+    .policy-card {
+      padding: 2rem;
+      background: var(--ivory);
+      border-radius: 15px;
+      transition: transform 0.3s ease;
+    }
+
+    .policy-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .policy-card h3 {
+      color: var(--teal);
+      margin-bottom: 1rem;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--navy);
+      color: var(--ivory);
+      padding: 4rem 0 2rem;
+      margin-top: 4rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3rem;
+      padding: 0 2rem;
+    }
+
+    .footer-section h4 {
+      color: var(--teal);
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-section ul li a {
+      color: var(--ivory);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-section ul li a:hover {
+      color: var(--teal);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      color: var(--ivory);
+      font-size: 1.5rem;
+      transition: color 0.3s ease;
+    }
+
+    .social-links a:hover {
+      color: var(--teal);
+    }
+
+    @media (max-width: 768px) {
+      .about-section,
+      .policy-grid,
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-content">
+      <h2 style="color: var(--ivory);">Myora</h2>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="#about">About</a>
+        <a href="#products">Products</a>
+        <a href="#contact">Contact</a>
+
+        <!-- Auth Buttons -->
+        <div class="auth-buttons">
+          <% if (user) { %>
+            <a href="/profile"><%= "Hi, " + user.name %></a>
+          <% } else { %>
+            <a href="/login" class="btn-login">Login</a>
+            <a href="/register" class="btn-register">Register</a>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- About Section -->
+    <section class="about-section" id="about">
+      <div class="about-content">
+        <h1>About Myora</h1>
+        <div class="bubble-container">
+          <% aboutPoints.forEach((point) => { %>
+            <div class="bubble"><%= point %></div>
+          <% }) %>
+        </div>
+      </div>
+
+      <!-- Floating Circles -->
+      <div class="decor-circles">
+        <span class="circle"></span>
+        <span class="circle"></span>
+        <span class="circle"></span>
+      </div>
+    </section>
+
+    <!-- Info Boxes -->
+    <section class="about-boxes">
+      <h2 style="text-align: center; margin-bottom: 2rem;">Why Choose Myora?</h2>
+      <div class="box-grid">
+        <% infoBoxes.forEach((box) => { %>
+          <div class="info-box">
+            <h3><%= box.title %></h3>
+            <p><%= box.text %></p>
+          </div>
+        <% }) %>
+      </div>
+    </section>
+
+    <!-- Policies -->
+    <section class="policy-section">
+      <h2 style="text-align: center; margin-bottom: 2rem;">Our Policies</h2>
+      <div class="policy-grid">
+        <% policies.forEach((policy) => { %>
+          <div class="policy-card">
+            <h3><%= policy.title %></h3>
+            <p><%= policy.text %></p>
+            <ul style="margin-top: 1rem; margin-left: 1.5rem;">
+              <% policy.points.forEach((pt) => { %>
+                <li><%= pt %></li>
+              <% }) %>
+            </ul>
+          </div>
+        <% }) %>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>About Us</h4>
+        <p>Myora - Your trusted destination for quality products and exceptional service.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Customer Service</h4>
+        <ul>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#shipping">Shipping Info</a></li>
+          <li><a href="#returns">Returns</a></li>
+          <li><a href="#privacy">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect With Us</h4>
+        <p>Follow us on social media for updates and offers!</p>
+        <div class="social-links">
+          <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Smooth Scroll -->
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>
