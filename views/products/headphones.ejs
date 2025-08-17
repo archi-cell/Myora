@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>boAt Rockerz 550 - MYORA</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      transition: background 0.3s ease;
+    }
+    body:hover {
+      background-color: #f0f0f0;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #1a1f36;
+      padding: 12px 20px;
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .logo {
+      font-size: 22px;
+      color: #00bfa6;
+      transition: transform 0.3s ease;
+    }
+    .logo:hover {
+      transform: rotate(-5deg) scale(1.1);
+    }
+    .search-bar input {
+      width: 240px;
+      padding: 6px 10px;
+      border-radius: 16px;
+      border: none;
+      outline: none;
+      transition: width 0.3s ease, box-shadow 0.3s ease;
+    }
+    .search-bar input:focus {
+      width: 280px;
+      box-shadow: 0 0 8px rgba(0,191,166,0.4);
+    }
+    .nav-options a {
+      color: white;
+      margin-left: 15px;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .nav-options a:hover {
+      color: #00bfa6;
+      transform: scale(1.1);
+    }
+
+    /* Category Bar */
+    .category-bar {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background: #fff;
+      padding: 10px 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      overflow-x: auto;
+    }
+    .category {
+      text-align: center;
+      margin: 0 10px;
+      font-size: 13px;
+      color: #333;
+      flex-shrink: 0;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .category img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto 5px;
+      border: 2px solid #ddd;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .category:hover img {
+      transform: scale(1.2);
+      border-color: #00bfa6;
+    }
+    .category:hover {
+      color: #00bfa6;
+      font-weight: bold;
+      transform: scale(1.05);
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      max-width: 1000px;
+      margin: 15px auto;
+      font-size: 13px;
+      color: #777;
+      padding: 0 15px;
+      opacity: 0;
+      animation: fadeIn 0.6s forwards;
+    }
+    .breadcrumb a {
+      text-decoration: none;
+      color: #00bfa6;
+      transition: text-decoration 0.3s ease;
+    }
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+
+    /* Product Container */
+    .product-container {
+      display: flex;
+      gap: 20px;
+      padding: 25px;
+      max-width: 1000px;
+      margin: 15px auto;
+      background: #fffaf2;
+      border-radius: 8px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+      transform: translateY(20px);
+      opacity: 0;
+      animation: slideUp 0.7s forwards;
+    }
+    .product-container img {
+      width: 260px;
+      border-radius: 8px;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+    .product-container img:hover {
+      transform: scale(1.05) rotate(-2deg);
+    }
+    .details h2 {
+      font-size: 20px;
+      margin-bottom: 8px;
+      color: #1a1f36;
+      transition: color 0.3s ease;
+    }
+    .details h2:hover {
+      color: #00bfa6;
+    }
+    .quick-specs li {
+      transition: transform 0.3s ease;
+    }
+    .quick-specs li:hover {
+      transform: translateX(5px);
+      color: #00bfa6;
+    }
+    .offers {
+      transition: background 0.3s ease;
+    }
+    .offers:hover {
+      background: #e0f7f4;
+    }
+    .buttons button {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .buttons button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 12px rgba(0,0,0,0.2);
+    }
+
+    /* Sections */
+    .section {
+      max-width: 1000px;
+      margin: 15px auto;
+      background: #fbf8f4;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+      opacity: 0;
+      animation: fadeIn 0.6s forwards;
+      animation-delay: 0.2s;
+    }
+
+    /* Reviews */
+    .review {
+      border-top: 1px solid #eee;
+      padding: 12px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      opacity: 0;
+      animation: slideRight 0.7s forwards;
+    }
+    .review img {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .review img:hover {
+      transform: scale(1.2);
+    }
+
+    /* Footer */
+    footer {
+      background: #1a1f36;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+      font-size: 13px;
+    }
+    footer a {
+      color: #00bfa6;
+      text-decoration: none;
+      margin: 0 8px;
+      transition: color 0.3s ease;
+    }
+    footer a:hover {
+      color: #ff6b6b;
+      text-decoration: underline;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      to {opacity: 1;}
+    }
+    @keyframes slideUp {
+      to {opacity: 1; transform: translateY(0);}
+    }
+    @keyframes slideRight {
+      to {opacity: 1; transform: translateX(0);}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo">MYORA</div>
+    <div class="search-bar"><input type="text" placeholder="Search for products..."></div>
+    <div class="nav-options">
+      <a href="#">Cart</a>
+      <a href="#">Login</a>
+      <a href="#">Profile</a>
+    </div>
+  </div>
+
+  <!-- Category Bar -->
+  <div class="category-bar">
+    <div class="category"><img src="https://images.unsplash.com/photo-1627639679638-8485316a4b21?fm=jpg&q=60" alt="Kids">Kids</div>
+    <div class="category"><img src="https://images.unsplash.com/photo-1618886614638-80e3c103d31a?fm=jpg&q=60" alt="Men">Men</div>
+    <div class="category"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvMgHc4pUoNFSFIPWCWlmVHOErECrJ0bYb2g&s" alt="Women">Women</div>
+    <div class="category"><img src="https://images.pexels.com/photos/322207/pexels-photo-322207.jpeg?auto=compress" alt="Accessories">Accessories</div>
+    <div class="category"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLnREXrn4jct_dIw5Zqk2_1LqUTNAeUdldsA&s" alt="Home">Home</div>
+    <div class="category"><img src="https://previews.123rf.com/images/olegdudko/olegdudko1510/olegdudko151007353/46794713-toys.jpg" alt="Toys">Toys</div>
+  </div>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="/">Home</a> > <a href="#">Electronics</a> > <a href="#">Headphones</a> > boAt Rockerz 550
+  </div>
+
+  <!-- Product Section -->
+  <div class="product-container">
+    <img src="https://rukminim2.flixcart.com/image/704/844/ksw4ccw0/headphone/w/g/r/rockerz-450-boat-original-imag6cqqh49wjfy5.jpeg?q=90" alt="boAt Rockerz 550">
+    
+    <div class="details">
+      <h2>boAt Rockerz 550 Bluetooth Headphones (Black Psyche, Over Ear)</h2>
+      <div class="rating">⭐ 4.1 | 6,536 Ratings & 390 Reviews</div>
+      <div>
+        <span class="price">₹4,999</span>
+        <span class="old-price">₹5,500</span>
+        <span class="discount">20% off</span>
+      </div>
+
+      <ul class="quick-specs">
+        <li>Powerful 50mm dynamic drivers with boAt Signature Sound</li>
+        <li>Up to 20 Hours of non-stop playback</li>
+        <li>Bluetooth v5.0 & AUX compatibility</li>
+        <li>Soft-cushioned earcups for all-day comfort</li>
+        <li>Integrated controls for calls & music</li>
+      </ul>
+
+      <div class="offers">
+        <p><strong>Available Offers:</strong></p>
+        <p>• 5% cashback on Flipkart Axis Bank Credit Card</p>
+        <p>• 10% off on BOBCARD EMI Transactions (Min ₹7,500)</p>
+        <p>• Special Price: Extra 49% off (inclusive of cashback)</p>
+      </div>
+
+      <p><strong>Warranty:</strong> 1 Year warranty from the date of purchase</p>
+
+      <div class="buttons">
+        <button class="add-cart">Add to Cart</button>
+        <button class="buy-now">Buy Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Description -->
+  <div class="section">
+    <h3>Description</h3>
+    <p>
+      The boAt Rockerz 550 Bluetooth Headphones are designed for powerful sound and long-lasting comfort. 
+      Equipped with 50mm drivers, cushioned earcups, and dual connectivity (Bluetooth + AUX), they deliver 
+      immersive audio whether you're gaming, working, or relaxing. With a 20-hour battery life, you can 
+      enjoy music all day without interruptions.
+    </p>
+  </div>
+
+  <!-- Specifications -->
+  <div class="section specs">
+    <h3>Specifications</h3>
+    <table>
+      <tr><td>Model</td><td>Rockerz 550</td></tr>
+      <tr><td>Color</td><td>Black Psyche</td></tr>
+      <tr><td>Type</td><td>Over Ear</td></tr>
+      <tr><td>Bluetooth Version</td><td>5.0</td></tr>
+      <tr><td>Battery Life</td><td>Up to 20 Hours</td></tr>
+      <tr><td>With Mic</td><td>Yes</td></tr>
+    </table>
+  </div>
+
+  <!-- Ratings & Reviews -->
+  <div class="section">
+    <h3>Ratings & Reviews</h3>
+
+    <div class="review">
+      <img src="https://i.pravatar.cc/40?img=12" alt="Jomon">
+      <div class="review-content">
+        <strong>Jomon Saji</strong> <span>— Navi Mumbai, Jul 2024</span>
+        <div class="stars">⭐⭐⭐⭐☆</div>
+        <p>Nice sound quality and amazing battery backup. Totally worth the price.</p>
+      </div>
+    </div>
+
+    <div class="review">
+      <img src="https://i.pravatar.cc/40?img=32" alt="Ritika">
+      <div class="review-content">
+        <strong>Ritika Sharma</strong> <span>— Delhi, Aug 2024</span>
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p>The bass is strong and build quality is premium. Ear cushioning is soft for long hours.</p>
+      </div>
+    </div>
+
+    <div class="review">
+      <img src="https://i.pravatar.cc/40?img=55" alt="Arun">
+      <div class="review-content">
+        <strong>Arun Mehta</strong> <span>— Bangalore, Sep 2024</span>
+        <div class="stars">⭐⭐⭐⭐☆</div>
+        <p>Battery backup is solid and design looks stylish. One of the best in this range.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 MYORA. All Rights Reserved.</p>
+    <div class="social-icons">
+      <a href="#">🌐 Facebook</a>
+      <a href="#">📸 Instagram</a>
+      <a href="#">🐦 Twitter</a>
+      <a href="#">▶️ YouTube</a>
+    </div>
+    <p><a href="#">About Us</a> | <a href="#">Contact</a> | <a href="#">Privacy Policy</a></p>
+  </footer>
+
+</body>
+</html>
