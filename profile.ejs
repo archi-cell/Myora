@@ -1,0 +1,74 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Profile | Myora</title>
+</head>
+<body>
+    <h2>Welcome, <%= user.name %></h2>
+    <p>Email: /<%= user.email %></p>
+    <a href="/">Back to Home</a>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Myora - Profile</title>
+    <link rel="stylesheet" href="/css/style.css"> <!-- ✅ use same CSS as homepage -->
+    <link rel="stylesheet" href="/css/profile.css"> <!-- ✅ extra profile-specific styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <%- include("partials/profile_header") %>
+
+        <!-- Profile Layout -->
+        <div class="profile-container">
+            <!-- Sidebar -->
+            <aside class="profile-sidebar">
+                <h3>Hello, <%= user.name %>
+                </h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-box"></i> My Orders</a></li>
+                    <li><strong>Account Settings</strong></li>
+                    <li><a href="#"><i class="fas fa-user"></i> Profile Information</a></li>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> Manage Addresses</a></li>
+                    <li><a href="#"><i class="fas fa-tag"></i> My Coupons</a></li>
+                    <li><strong>Payments</strong></li>
+                    <li><a href="#"><i class="fas fa-gift"></i> Gift Cards</a></li>
+                    <li><a href="#"><i class="fas fa-wallet"></i> Saved UPI</a></li>
+                </ul>
+            </aside>
+
+            <!-- Profile Content -->
+            <main class="profile-content">
+                <h2>Personal Information</h2>
+
+                <% ["name","gender","email","mobile"].forEach(field=> { %>
+                    <div class="profile-section">
+                        <h4>
+                            <%= field.charAt(0).toUpperCase() + field.slice(1) %>
+                        </h4>
+                        <form method="POST" action="/profile/update">
+                            <input type="hidden" name="field" value="<%= field %>">
+                            <input type="<%= field === 'email' ? 'email' : 'text' %>" name="value"
+                                value="<%= user[field] %>" class="input-field" required>
+                            <button type="submit" class="btn-save">Save</button>
+                        </form>
+                    </div>
+                    <% }) %>
+            </main>
+        </div>
+
+        <!-- Footer -->
+        <%- include("partials/profile_footer") %>
+
+</body>
+
+</html>
