@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Myora — Cart</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/css/cart.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* === Your existing CSS (no changes) === */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background-color: #fefcf5;
+      color: #222;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: #004d40;
+      color: #fefcf5;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+      animation: fadeDown 1s ease;
+    }
+
+    header h1 {
+      font-size: 1.8em;
+      letter-spacing: 1px;
+    }
+
+    header h1 span {
+      color: #ffd166;
+    }
+
+    nav a {
+      color: #fefcf5;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 500;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffd166;
+      transform: scale(1.1);
+    }
+
+    .cart-container {
+      width: 90%;
+      max-width: 900px;
+      margin: 40px auto;
+      background: #ffffff;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 4px 10px rgba(0, 77, 64, 0.15);
+      animation: fadeUp 1s ease;
+    }
+
+    .cart-title {
+      text-align: center;
+      font-size: 1.8em;
+      margin-bottom: 25px;
+      color: #004d40;
+      animation: slideIn 0.8s ease;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fefcf5;
+      border: 2px solid #e0f2f1;
+      border-radius: 10px;
+      padding: 15px 20px;
+      margin-bottom: 15px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .cart-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 4px 10px rgba(0, 77, 64, 0.2);
+    }
+
+    .item-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .item-info img {
+      width: 70px;
+      height: 70px;
+      border-radius: 10px;
+      border: 2px solid #004d40;
+      transition: transform 0.3s;
+    }
+
+    .item-info img:hover {
+      transform: rotate(-3deg) scale(1.05);
+    }
+
+    .item-details {
+      text-align: right;
+    }
+
+    .price {
+      font-weight: bold;
+      color: #004d40;
+    }
+
+    .remove-btn {
+      background: transparent;
+      border: none;
+      color: #e53935;
+      font-size: 0.9em;
+      cursor: pointer;
+      transition: transform 0.3s, color 0.3s;
+    }
+
+    .remove-btn:hover {
+      transform: scale(1.1);
+      color: #c62828;
+    }
+
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .qty-form {
+      display: inline;
+    }
+
+    .qty-btn {
+      background-color: #064e3b;
+      color: #fffbe9;
+      border: none;
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .qty-btn:hover {
+      background-color: #03643f;
+    }
+
+    .qty-number {
+      font-size: 16px;
+      font-weight: bold;
+      color: #064e3b;
+    }
+
+    .empty-cart {
+      text-align: center;
+      padding: 50px 20px;
+      color: #004d40;
+      animation: fadeUp 1s ease;
+    }
+
+    .empty-cart h2 {
+      margin-bottom: 20px;
+      font-size: 1.5em;
+    }
+
+    .btn {
+      background: #004d40;
+      color: #fefcf5;
+      padding: 12px 24px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-block;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .btn:hover {
+      background: #00695c;
+      transform: scale(1.05);
+    }
+
+    .checkout-btn {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .cart-summary {
+      margin-top: 30px;
+      text-align: center;
+      background: #e0f2f1;
+      border-radius: 10px;
+      padding: 20px;
+      animation: fadeUp 1s ease;
+    }
+
+    .cart-summary h3 {
+      color: #004d40;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      background: #004d40;
+      color: #fefcf5;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      padding: 30px 10px;
+      margin-top: auto;
+      text-align: center;
+      animation: fadeUp 1.5s ease;
+    }
+
+    .footer-section {
+      margin: 10px;
+    }
+
+    .footer-section h3 {
+      color: #ffd166;
+      margin-bottom: 10px;
+    }
+
+    .footer-section a {
+      color: #fefcf5;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-section a:hover {
+      color: #ffd166;
+    }
+
+    .social-icons a {
+      color: #fefcf5;
+      margin: 0 8px;
+      font-size: 1.3em;
+      transition: transform 0.3s, color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #ffd166;
+      transform: scale(1.2);
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+      }
+
+      .item-details {
+        margin-top: 10px;
+        text-align: left;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <%- include('partials/header_cart') %>
+
+    <div class="cart-container">
+      <% if (!cart || cart.length===0) { %>
+        <div class="empty-cart">
+          <h2>Your Cart is Empty</h2>
+          <a href="/productList" class="btn">🛍 Continue Shopping</a>
+        </div>
+        <% } else { %>
+          <h1 class="cart-title">🛒 Your Shopping Cart</h1>
+
+          <% cart.forEach(item=> { %>
+            <div class="cart-item">
+              <div class="item-info">
+                <% if (item.image) { %>
+                  <img src="/images/<%= item.image %>" alt="<%= item.name %>">
+                  <% } %>
+                    <strong>
+                      <%= item.name %>
+                    </strong>
+              </div>
+
+              <div class="item-details">
+                <span class="price">₹<%= item.price %></span>
+                <div class="qty-controls">
+                  <!-- Decrease Quantity -->
+                  <form action="/cart/decrease" method="POST" class="qty-form">
+                    <input type="hidden" name="id" value="<%= item.id %>">
+                    <button type="submit" class="qty-btn">-</button>
+                  </form>
+
+                  <span class="qty-number">
+                    <%= item.quantity %>
+                  </span>
+
+                  <!-- Increase Quantity -->
+                  <form action="/cart/increase" method="POST" class="qty-form">
+                    <input type="hidden" name="id" value="<%= item.id %>">
+                    <button type="submit" class="qty-btn">+</button>
+                  </form>
+
+                  <!-- Remove Item -->
+                  <form action="/cart/remove" method="POST" class="remove-form">
+                    <input type="hidden" name="id" value="<%= item.id %>">
+                    <button type="submit" class="remove-btn"><i class="fa fa-trash"></i> Remove</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <% }) %>
+
+              <div class="cart-summary">
+                <h3>Cart Summary</h3>
+                <p>Total Items: <%= cart.reduce((sum, i)=> sum + i.quantity, 0) %></p>
+                <p><strong>Total Price: ₹<%= cart.reduce((sum, i)=> sum + (i.price * i.quantity), 0) %></strong></p>
+                <a href="/checkout" class="btn checkout-btn">Proceed to Checkout</a>
+              </div>
+              <% } %>
+    </div>
+
+    <!-- Footer -->
+    <%- include('partials/footer_cart') %>
+</body>
+
+</html>

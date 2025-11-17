@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MYORA — Checkout</title>
+    <style>
+        :root {
+            --emerald: #014d40;
+            --emerald-light: #02735e;
+            --accent: #00bfa6;
+            --cream: #f9f6ee;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(180deg, var(--cream), #fff);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: rgba(1, 77, 64, 0.9);
+            color: #fff;
+            text-align: center;
+            padding: 18px 0;
+            font-size: 1.6em;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        main {
+            max-width: 700px;
+            margin: 50px auto;
+            background: white;
+            border-radius: 14px;
+            padding: 40px;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--emerald);
+            margin-bottom: 30px;
+            font-size: 1.8em;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f4f8f7;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 14px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-option:hover {
+            border-color: var(--emerald-light);
+            transform: scale(1.02);
+            background: #e7f4f1;
+        }
+
+        .payment-option.selected {
+            border-color: var(--accent);
+            background: #d7f5ef;
+        }
+
+        .payment-option img {
+            width: 50px;
+            height: auto;
+        }
+
+        .pay-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, var(--emerald), var(--emerald-light));
+            color: #fff;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .pay-btn:hover {
+            background: linear-gradient(135deg, var(--emerald-light), var(--accent));
+            transform: scale(1.03);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            background: rgba(1, 77, 64, 0.9);
+            color: white;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>MYORA Checkout</header>
+
+    <main>
+        <h2>Select Payment Method</h2>
+
+        <div class="payment-option" data-method="upi">
+            <span>💳 UPI (Google Pay / PhonePe / Paytm)</span>
+            <img src="/images/upi.png" alt="UPI">
+        </div>
+
+        <div class="payment-option" data-method="card">
+            <span>💰 Credit / Debit Card</span>
+            <img src="/images/card.png" alt="Card">
+        </div>
+
+        <div class="payment-option" data-method="cod">
+            <span>🚚 Cash on Delivery</span>
+            <img src="/images/cod.png" alt="COD">
+        </div>
+
+        <button class="pay-btn">Proceed to Payment</button>
+    </main>
+
+    <footer>
+        &copy; 2025 MYORA. All Rights Reserved.
+    </footer>
+
+    <script>
+        const paymentOptions = document.querySelectorAll(".payment-option");
+        const payBtn = document.querySelector(".pay-btn");
+        let selectedMethod = null;
+
+        paymentOptions.forEach(option => {
+            option.addEventListener("click", () => {
+                paymentOptions.forEach(opt => opt.classList.remove("selected"));
+                option.classList.add("selected");
+                selectedMethod = option.dataset.method;
+            });
+        });
+
+        payBtn.addEventListener("click", () => {
+            if (!selectedMethod) {
+                alert("Please select a payment method!");
+                return;
+            }
+
+            // Simulate payment process
+            setTimeout(() => {
+                window.location.href = "/thankyou";
+            }, 1000);
+        });
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

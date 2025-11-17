@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Theme CSS -->
+    
+    <!-- Page Specific CSS -->
+    <link rel="stylesheet" href="/contact.css">
+</head>
+
+<body>
+
+    <!-- Header Partial -->
+    <%- include('partials/header_contactus') %>
+
+    <div class="container">
+        <h2 class="page-title">We’d love to hear from you!</h2>
+        <p class="page-subtitle">Get in touch with us for any queries or support.</p>
+
+        <div class="contact-grid">
+            <!-- Address Card -->
+            <div class="card contact-card">
+                <div class="card-body">
+                    <div class="icon">📍</div>
+                    <h4 class="card-title">Address</h4>
+                    <p class="card-text">123, Bay Street, New Delhi</p>
+                </div>
+            </div>
+
+            <!-- Phone Card -->
+            <div class="card contact-card">
+                <div class="card-body">
+                    <div class="icon">📞</div>
+                    <h4 class="card-title">Phone</h4>
+                    <p class="card-text">+91 98765 - 43210</p>
+                </div>
+            </div>
+
+            <!-- Email Card -->
+            <div class="card contact-card">
+                <div class="card-body">
+                    <div class="icon">✉️</div>
+                    <h4 class="card-title">Email</h4>
+                    <p class="card-text">support@myora.com</p>
+                </div>
+            </div>
+
+            <!-- Hours Card -->
+            <div class="card contact-card">
+                <div class="card-body">
+                    <div class="icon">🕒</div>
+                    <h4 class="card-title">Hours</h4>
+                    <p class="card-text">Mon - Fri: 9:00 AM – 3:00 PM</p>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+
+    <!-- Footer Partial -->
+    <%- include('partials/footer_contactus') %>
+
+</body>
+</html>
